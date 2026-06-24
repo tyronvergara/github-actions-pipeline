@@ -1,11 +1,15 @@
+"""Main module of a simple API made with FastAPI"""
+
 from fastapi import FastAPI
 
 app = FastAPI()
 
 @app.get("/")
 async def root():
-     return {"message": "Hello World"}
+    """A typical Hello World message at the root of the API"""
+    return {"message": "Hello World"}
 
 @app.get("/status")
 async def status():
-     return {"status": "OK"}
+    """Healthcheck point"""
+    return {"status": "OK"}
