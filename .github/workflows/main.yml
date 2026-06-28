@@ -1,0 +1,27 @@
+name: main-workflow
+on: push
+jobs:
+  dockerfile-linter:
+    name: "Main Dockerfile linter job"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout our code"
+        uses: actions/checkout@v7
+      - name: "Docker linter"
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+  python-linter:
+    name: "Main Python linter job"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout our code"
+        uses: actions/checkout@v7
+      - name: "Use Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: "Install Python linter"
+        run: "pip install -r requirements-dev.txt -r requirements.txt"
+      - name: "Run Python linter"
+        run: "pylint main.py"
