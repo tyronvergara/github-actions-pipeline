@@ -48,6 +48,8 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: ghcr.io/tyronvergara/mini-api
+      - name: "Checkout our code"
+        uses: actions/checkout@v7      
       - name: "Push container image"
         uses: docker/build-push-action@v7
         with:
